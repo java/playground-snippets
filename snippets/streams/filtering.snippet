@@ -1,0 +1,8 @@
+List<String> cities =
+            Arrays.asList("Shenzhen", "Brussels", "Taipei", "Buenos Aires", "Sydney", "Bristol");
+
+cities.stream()
+      .filter(s -> s.startsWith("B"))
+      .map(String::toUpperCase)
+      .sorted()
+      .forEach(System.out::println);

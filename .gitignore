@@ -1,0 +1,14 @@
+target
+.terraform
+*hcl
+*terraform.tfvars
+*.tfstate*
+__pycache__
+*.tfvars
+.idea
+
+*.local_development*
+input*/
+output*/
+
+

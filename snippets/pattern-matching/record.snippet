@@ -1,0 +1,14 @@
+record Point(int x, int y) {
+    public boolean equals(Object other) {
+        return other instanceof Point otherPoint &&
+                this.x == otherPoint.x && this.y == otherPoint.y;
+    }
+}
+
+Point p1 = new Point(0, 0);
+Point p2 = new Point(1, 1);
+Point p3 = new Point(0, 0);
+System.out.println("p1 equals object? " + p1.equals(new Object()));
+System.out.println("p1 equals p2? " + p1.equals(p2));
+System.out.println("p1 equals p3? " + p1.equals(p3));
+System.out.println("p2 equals p3? " + p2.equals(p3));
