@@ -21,8 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SnippetTest {
 
@@ -98,5 +97,6 @@ public class SnippetTest {
         System.out.printf("[SnippetTest::testCharset] Running charset validation test for snippet:\n%s\n", snippet);
         var responseBody = executeSnippet(snippet);
         assertTrue(responseBody.contains("tu dois faire ça"));
+        assertFalse(responseBody.contains("tu dois faire ?a"));
     }
 }
