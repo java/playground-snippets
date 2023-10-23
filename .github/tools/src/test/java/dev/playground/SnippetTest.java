@@ -3,8 +3,6 @@ package dev.playground;
 import dev.playground.tools.IndexJson;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.IOException;
 import java.net.URI;
@@ -74,19 +72,25 @@ public class SnippetTest {
                 .build();
         var response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
         var responseBody = new String(response.body());
-        assertEquals(200, response.statusCode(), responseBody);
-
-        assertTrue(responseBody.contains("VALID"), responseBody);
-
+        var responseDetails = String.format("Headers: %s | Body: %s", response.headers().map(), responseBody);
+        assertEquals(200, response.statusCode(), responseDetails);
+        assertTrue(responseBody.contains("VALID"), responseDetails);
 
         return responseBody;
     }
 
-    @ParameterizedTest
-    @MethodSource(value = "getData")
-    public void testCompile(String snippet) throws Exception {
-        System.out.printf("[SnippetTest::testCompile] Running validation test for snippet:\n%s\n", snippet);
-        executeSnippet(snippet);
+    @Test
+    public void testCompile() throws Exception {
+        var snippets = getData();
+        snippets.forEach(snippet -> {
+            try {
+                System.out.printf("[SnippetTest::testCompile] Running validation test for snippet:\n%s\n", snippet);
+                executeSnippet(snippet);
+                Thread.sleep(Duration.ofSeconds(4));
+            } catch (Exception e) {
+                fail(e);
+            }
+        });
     }
 
     @Test
