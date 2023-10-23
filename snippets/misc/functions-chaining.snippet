@@ -1,0 +1,9 @@
+var strings = Arrays.asList("one", null, "three", "", "five", "six");
+
+Function<String, String> handleNull = s -> s == null ? "": s;
+Function<String, Integer> length = s -> s.length();
+Function<String, Integer> handleNullThenLength = handleNull.andThen(length);
+
+for (String string : strings) {
+    System.out.println(string + " -> length = " + handleNullThenLength.apply(string));
+}
