@@ -1,0 +1,7 @@
+// BiFunction with Unnamed Pattern
+var strings = List.of("one", "two", "three", "four");
+BiFunction<String, Integer, Integer> indexer = (_, i) -> i;
+var result = IntStream.range(0, strings.size())
+        .mapToObj(index -> indexer.apply(strings.get(index), index))
+        .toList();
+System.out.println("result = " + result);

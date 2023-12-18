@@ -1,0 +1,30 @@
+// Custom string template to analyze CSV
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+record Price(int price) {
+    public static Price of(String price) {
+        return new Price(Integer.parseInt(price));
+    }
+}
+record Rental(LocalDate start, LocalDate end, Price price) {}
+Function<? super StringTemplate, Rental> function =
+        template -> {
+            var values = template.values();
+            var start = LocalDate.parse((String) values.get(0), DateTimeFormatter.ISO_LOCAL_DATE);
+            var end = LocalDate.parse((String) values.get(1), DateTimeFormatter.ISO_LOCAL_DATE);
+            var price = Price.of((String) values.get(2));
+            return new Rental(start, end, price);
+        };
+var RENTALS = StringTemplate.Processor.of(function);
+var csv = """
+        2023-03-19;2023-03-24;500
+        2023-07-14;2023-07-21;700
+        2023-09-20;2023-09-23;300
+        """;
+var splitter = Pattern.compile(";");
+var result = csv.lines()
+        .map(splitter::splitAsStream)
+        .map(Stream::toList)
+        .map(list -> RENTALS."\{list.get(0)} \{list.get(1)} \{list.get(2)}")
+        .toList();
+result.forEach(System.out::println);

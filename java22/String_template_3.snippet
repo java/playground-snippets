@@ -1,0 +1,23 @@
+// Printing numbers with FMT
+import static java.util.FormatProcessor.FMT;
+record Price(int price) {}
+record Product(String name, Price price) {
+    Product(String name, int price) {
+        this(name, new Price(price));
+    }
+}
+public static String format(Product product) {
+    return FMT."%-6s\{product.name()} %3d\{product.price().price()}";
+}
+
+var products = List.of(
+        new Product("Spoon", 5),
+        new Product("Fork", 7),
+        new Product("Knife", 8),
+        new Product("Plate", 12),
+        new Product("Glass", 10)
+);
+products.stream()
+        .map(product -> format(product))
+        .forEach(System.out::println);
+

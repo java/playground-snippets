@@ -1,6 +1,6 @@
 DISCLAIMER
 
-There are free and unencumbered sample snippets released into the public domain.
+These are free and unencumbered sample snippets released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute these sample snippets, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
 

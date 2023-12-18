@@ -1,0 +1,32 @@
+// Printing dates with FMT
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import static java.util.FormatProcessor.FMT;
+record Price(int price) {}
+record Rental(LocalDate start, LocalDate end, Price price) {
+    Rental(String start, String end, int price) {
+        this(
+                LocalDate.parse(start, DateTimeFormatter.ISO_LOCAL_DATE),
+                LocalDate.parse(end, DateTimeFormatter.ISO_LOCAL_DATE),
+                new Price(price));
+    }
+}
+public static String format(Rental rental) {
+    var formatter = DateTimeFormatter.ofPattern("MMMM dd yyyy");
+    return FMT."""
+               Rental from \{formatter.format(rental.start())}\
+                to \{formatter.format(rental.start())}, \
+               for the price \{rental.price().price()}""";
+}
+String format = "MMMM dd yyyy";
+LocalDate today = LocalDate.now();
+System.out.println(DateTimeFormatter.ofPattern("MMMM dd yyyy").format(today));
+var rentals = List.of(
+        new Rental("2024-03-19", "2024-03-22", 800),
+        new Rental("2024-07-01", "2024-07-31", 4_000),
+        new Rental("2024-09-15", "2024-09-22", 2_500)
+);
+rentals.stream()
+        .map(rental -> format(rental))
+        .forEach(System.out::println);
+

@@ -1,0 +1,24 @@
+// JSON generation with STR and pattern matching
+sealed interface JSonAble permits Point, Circle {}
+record Point(int x, int y) implements JSonAble {}
+record Circle(Point center, int radius) implements JSonAble {}
+public static String jsonOf(JSonAble jSonAble) {
+    return switch (jSonAble) {
+        case Point(int x, int y) ->
+                STR."""
+                {"x":"\{x}", "y":"\{y}"}""";
+        case Circle(var center, int radius) ->
+                STR."""
+                {
+                   "center":"\{jsonOf(center)}",
+                   "radius":"\{radius}"
+                }""";
+    };
+}
+
+var objects =
+        List.of(
+                new Point(1, 1),
+                new Circle(new Point(1, 2), 3));
+objects.forEach(element -> System.out.println(jsonOf(element)));
+

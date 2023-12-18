@@ -1,0 +1,22 @@
+// Simple custom String Template
+Function<? super StringTemplate, String> function =
+        template -> {
+            var fragments = template.fragments();
+            var values = template.values();
+            return IntStream.range(0, fragments.size())
+                    .boxed()
+                    .<String>mapMulti((index, downstream) -> {
+                        downstream.accept(fragments.get(index));
+                        if (index < values.size()) {
+                            downstream.accept((String) values.get(index));
+                        }
+                    })
+                    .collect(Collectors.joining());
+        };
+var SIMPLE_PRINT = StringTemplate.Processor.of(function);
+var strings = List.of("2023-03-19", "2023-09-23");
+var result1 = SIMPLE_PRINT."\{strings.get(0)}";
+System.out.println("Result 1 = " + result1);
+var result2 = SIMPLE_PRINT."\{strings.get(0)} \{strings.get(1)}";
+System.out.println("Result 2 = " + result2);
+

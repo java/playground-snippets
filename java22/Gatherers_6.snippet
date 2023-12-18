@@ -1,0 +1,18 @@
+// Composing gatherers to remove noise
+var strings = List.of(5, 5, 5, 1, 5, 5, 5, 1, 5, 5, 1, 5);
+Gatherer<Integer, ?, List<Integer>> slide =
+        Gatherers.windowSliding(3);
+Gatherer<List<Integer>, ?, List<Integer>> smooth =
+        Gatherer.of((_, list, downstream) -> {
+            int max = list.stream().mapToInt(n -> n).max().orElseThrow();
+            list = List.of(max, max, max);
+            return downstream.push(list);
+        });
+Gatherer<List<Integer>, ?, Integer> unslide =
+        Gatherer.of((_, list, downStream) -> downStream.push(list.getFirst()));
+Gatherer<Integer, ?, Integer> smoothOnASlidingWindow =
+        slide.andThen(smooth).andThen(unslide);
+var result = strings.stream()
+        .gather(smoothOnASlidingWindow)
+        .toList();
+System.out.println("result = " + result);

@@ -1,0 +1,4 @@
+// Consumer with Unnamed Pattern
+List<String> strings = List.of("one", "two", "three");
+Consumer<String> notInterested = _ -> System.out.println("I'm not interested in this argument");
+strings.forEach(notInterested);

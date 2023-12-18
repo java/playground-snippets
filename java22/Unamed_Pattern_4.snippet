@@ -1,0 +1,49 @@
+// Pattern Matching with Unnamed Pattern
+sealed interface Operation permits Add, Mult, Sub, Div {}
+record Add(int left, int right) implements Operation {
+    public String toString() {
+        return left + " + " + right;
+    }
+}
+record Mult(int left, int right) implements Operation  {
+    public String toString() {
+        return left + "*" + right;
+    }
+}
+record Sub(int left, int right) implements Operation  {
+    public String toString() {
+        return left + " - " + right;
+    }
+}
+record Div(int left, int right) implements Operation  {
+    public String toString() {
+        return left + "/" + right;
+    }
+}
+public static boolean naturalNumber(Operation operation) {
+    return switch (operation) {
+        case Add _ -> true;
+        case Mult _ -> true;
+        case Sub(int left, int right) -> left > right;
+        case Div(int left, int right) -> left % right == 0;
+    };
+}
+public static int resolve(Operation operation) {
+    return switch(operation) {
+        case Add(int left, int right) -> left + right;
+        case Mult(int left, int right) -> left * right;
+        case Sub(int left, int right) -> left - right;
+        case Div(int left, int right) -> left / right;
+    };
+}
+
+var operations = List.of(
+        new Add(1, 2),
+        new Mult(4, 3),
+        new Sub(0, 3), new Sub(4, 3),
+        new Div(9, 4), new Div(1, 3), new Div(12, 4));
+System.out.println("Are the following natural integers?");
+operations.forEach(operation -> {
+    System.out.println(operation + (
+            naturalNumber(operation) ? " = " + resolve(operation): " -> result is not a natural integer"));
+});

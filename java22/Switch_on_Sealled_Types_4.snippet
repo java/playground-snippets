@@ -1,0 +1,48 @@
+// Switch on Sealed Types with Nested Record Pattern
+sealed interface Shape permits Rectangle, Square, Circle {}
+record Point(double x, double y) {}
+record Edge(double u, double v) {
+    public double scalar(Edge other) {
+        return this.u*other.u + this.v*other.v;
+    }
+    public double norm() {
+        return Math.sqrt(this.scalar(this));
+    }
+}
+record Square(Point p, Edge e) implements Shape {}
+record Rectangle(Point p, Edge e1, Edge e2) implements Shape {
+    public Rectangle {
+        if (Math.abs(e1.scalar(e2)) > 1E-06)
+            throw new IllegalArgumentException("Edges must be orthogonal");
+    }
+}
+record Circle(Point center, double radius) implements Shape {}
+
+ToDoubleFunction<Shape> surface = shape ->
+	switch (shape) {
+		case Rectangle(Point _, Edge e1, Edge e2) -> Math.sqrt(e1.norm()*e2.norm());
+		case Square(Point _, Edge e)              -> e.norm();
+		case Circle(Point _, double radius)       -> Math.PI*radius*radius;
+	};
+Function<Shape, String> toString = shape ->
+	switch (shape) {
+		case Rectangle r -> "Rectangle -> %.2f".formatted(surface.applyAsDouble(r));
+		case Square s    -> "Square    -> %.2f".formatted(surface.applyAsDouble(s));
+		case Circle c    -> "Circle    -> %.2f".formatted(surface.applyAsDouble(c));
+	};
+Shape s0 = new Square(new Point(0d, 0d), new Edge(0d, 0d));
+Shape s1 = new Square(new Point(0d, 1d), new Edge(1d, 0d));
+Shape s2 = new Square(new Point(2d, 3d), new Edge(1d, 1d));
+Shape s3 = new Square(new Point(5d, 0d), new Edge(1d, 2d));
+Rectangle r0 = new Rectangle(new Point(0d, 0d), new Edge(0d, 0d), new Edge(0d, 0d));
+Rectangle r1 = new Rectangle(new Point(1d, 2d), new Edge(1d, 0d), new Edge(0d, 0d));
+Rectangle r2 = new Rectangle(new Point(4d, 1d), new Edge(0d, 0d), new Edge(1d, 0d));
+Rectangle r3 = new Rectangle(new Point(0d, 3d), new Edge(1d, 0d), new Edge(0d, 1d));
+Rectangle r4 = new Rectangle(new Point(2d, 3d), new Edge(1d, 1d), new Edge(1d, -1d));
+Circle c1 = new Circle(new Point(0d, 0d), 1d);
+Circle c2 = new Circle(new Point(2d, 3d), 2d);
+var shapes = List.of(s0, s1, s2, s3, r0, r1, r2, r3, r4, c1, c2);
+shapes.stream()
+        .map(toString)
+        .forEach(System.out::println);
+

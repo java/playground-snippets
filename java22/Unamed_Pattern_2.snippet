@@ -1,0 +1,7 @@
+// Function with Unnamed Pattern
+List<String> strings = List.of("1", "11", "111");
+Function<String, Integer> constantLength = _ -> 3;
+var result = strings.stream()
+        .map(constantLength)
+        .toList();
+System.out.println("result = " + result);

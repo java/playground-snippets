@@ -1,0 +1,15 @@
+// Simple JSON generation with STR
+record Point(int x, int y) {
+    public String toJson() {
+        return STR."""
+               {"x":"\{this.x}", "y":"\{this.y}"}\
+               """;
+    }
+}
+
+var objects =
+        List.of(new Point(1, 1), new Point(2, 2));
+objects.stream()
+        .map(Point::toJson)
+        .forEach(System.out::println);
+
