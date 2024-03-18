@@ -1,0 +1,10 @@
+// Formatting
+String cities = """
+    New York   \s
+    Paris      \s
+    Bangalore  \s
+    Singapore  \s
+    Tokyo      \s
+    """;
+
+cities.lines().map(line -> "|" + line + "|").forEach(System.out::println);
