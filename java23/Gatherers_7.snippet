@@ -1,0 +1,105 @@
+// Simple Fixed Window Gatherer
+var strings = List.of("one", "two", "three", "four", "five");
+Gatherer<String, ?, List<String>> fixedWindow =
+        Gatherers.windowFixed(2);
+var result = strings.stream()
+        .gather(fixedWindow)
+        .toList();
+System.out.println("result = " + result);
+// Snippet 2
+// Title: Simple Sliding Window Gatherer
+var strings = List.of("one", "two", "three", "four", "five");
+Gatherer<String, ?, List<String>> slidingWindow =
+        Gatherers.windowSliding(2);
+var result = strings.stream()
+        .gather(slidingWindow)
+        .toList();
+System.out.println("result = " + result);
+// Snippet 3
+// Title: Summing the sliding windows
+var strings = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+Gatherer<Integer, ?, List<Integer>> createSlidingWindows =
+        Gatherers.windowSliding(2);
+var result = strings.stream()
+        .gather(createSlidingWindows)
+        .map(windows -> windows.stream().mapToInt(i -> i).sum())
+        .toList();
+System.out.println("result = " + result);
+// Snippet 4
+// Title: Summing the sliding windows with gatherers
+var strings = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+Gatherer<Integer, ?, List<Integer>> createSlidingWindows =
+        Gatherers.windowSliding(2);
+Gatherer<List<Integer>, ?, Integer> sumEachWindow =
+        Gatherer.of((_, list, downstream) -> downstream.push(list.stream().mapToInt(n -> n).sum()));
+var result = strings.stream()
+        .gather(createSlidingWindows)
+        .gather(sumEachWindow)
+        .toList();
+System.out.println("result = " + result);
+// Snippet 5
+// Title: Composing gatherers
+var strings = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+Gatherer<Integer, ?, List<Integer>> createSlidingWindows =
+        Gatherers.windowSliding(2);
+Gatherer<List<Integer>, ?, Integer> sumEachWindow =
+        Gatherer.of((_, list, downstream) -> downstream.push(list.stream().mapToInt(n -> n).sum()));
+Gatherer<Integer, ?, Integer> slideThenSum =
+        createSlidingWindows.andThen(sumEachWindow);
+var result = strings.stream()
+        .gather(slideThenSum)
+        .toList();
+System.out.println("result = " + result);
+// Snippet 6
+// Title: Composing gatherers to remove noise
+var strings = List.of(5, 5, 5, 1, 5, 5, 5, 1, 5, 5, 1, 5);
+Gatherer<Integer, ?, List<Integer>> slide =
+        Gatherers.windowSliding(3);
+Gatherer<List<Integer>, ?, List<Integer>> smooth =
+        Gatherer.of((_, list, downstream) -> {
+            int max = list.stream().mapToInt(n -> n).max().orElseThrow();
+            list = List.of(max, max, max);
+            return downstream.push(list);
+        });
+Gatherer<List<Integer>, ?, Integer> unslide =
+        Gatherer.of((_, list, downStream) -> downStream.push(list.getFirst()));
+Gatherer<Integer, ?, Integer> smoothOnASlidingWindow =
+        slide.andThen(smooth).andThen(unslide);
+var result = strings.stream()
+        .gather(smoothOnASlidingWindow)
+        .toList();
+System.out.println("result = " + result);
+// Snippet 7
+// Title: Inserting an element into a stream
+interface GathererSupplier {
+    String get();
+    default Gatherer<String, ?, String> at(int insertionIndex) {
+        return Gatherer.ofSequential(
+              () -> new Object() {
+                  int index;
+                  final String element = get();
+              },
+              (state, s, stream) -> {
+                  if (state.index != insertionIndex) {
+                      state.index++;
+                      return stream.push(s);
+                  } else {
+                      stream.push(state.element);
+                      stream.push(s);
+                      state.index++;
+                      return true;
+                  }
+              }
+        );
+    }
+}
+GathererSupplier insert(String element) {
+    return () -> element;
+}
+var ints = List.of("one", "two", "three", "four", "five");
+var index = 3;
+var element = "something";
+var result = ints.stream()
+      .gather(insert(element).at(index))
+      .toList();
+System.out.println("result = " + result);

@@ -1,0 +1,53 @@
+// Primitive Pattern Matching for InstanceOf
+record JsonDouble(double d) {}
+record JsonFloat(float f) {}
+record JsonLong(long i) {}
+record JsonInt(int i) {}
+
+void analyze(Object o) {
+    if (o instanceof JsonDouble(double d)) {
+        System.out.println("o is wrapping a double " + d);
+    } else if (o instanceof JsonLong(long l)) {
+        System.out.println("o is wrapping a long " + l);
+    } else if (o instanceof JsonInt(int i)) {
+        System.out.println("o is wrapping an int " + i);
+    } else {
+        System.out.println("Unrecognized wrapper " + o);
+    }
+}
+
+var jsonDouble = new JsonDouble(Math.PI);
+analyze(jsonDouble);
+var jsonFloat = new JsonFloat((float)Math.PI);
+analyze(jsonFloat);
+var jsonLong = new JsonLong(314L);
+analyze(jsonLong);
+var jsonInt = new JsonInt(31);
+analyze(jsonInt);
+
+// Snippet 2
+// Title: Primitive Pattern Matching for Switch
+sealed interface JsonNumber permits
+      JsonDouble, JsonFloat, JsonLong, JsonInt {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+record JsonLong(long i) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+
+void analyze(JsonNumber jsonNumber) {
+    switch(jsonNumber) {
+        case JsonDouble(double d) -> System.out.println("Double: " + d);
+        case JsonFloat(float f) -> System.out.println("Float: " + f);
+        case JsonLong(long l) -> System.out.println("Long: " + l);
+        case JsonInt(int i) -> System.out.println("Int: " + i);
+    }
+}
+
+JsonNumber jsonNumber = new JsonDouble(Math.PI);
+analyze(jsonNumber);
+jsonNumber = new JsonFloat((float)Math.PI);
+analyze(jsonNumber);
+jsonNumber = new JsonLong(314L);
+analyze(jsonNumber);
+jsonNumber = new JsonInt(31);
+analyze(jsonNumber);
