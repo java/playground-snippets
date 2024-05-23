@@ -1,0 +1,12 @@
+// Composing gatherers
+var strings = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9);
+Gatherer<Integer, ?, List<Integer>> createSlidingWindows =
+        Gatherers.windowSliding(2);
+Gatherer<List<Integer>, ?, Integer> sumEachWindow =
+        Gatherer.of((_, list, downstream) -> downstream.push(list.stream().mapToInt(n -> n).sum()));
+Gatherer<Integer, ?, Integer> slideThenSum =
+        createSlidingWindows.andThen(sumEachWindow);
+var result = strings.stream()
+        .gather(slideThenSum)
+        .toList();
+System.out.println("result = " + result);
