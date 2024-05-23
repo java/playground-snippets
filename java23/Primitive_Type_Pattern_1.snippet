@@ -24,30 +24,3 @@ var jsonLong = new JsonLong(314L);
 analyze(jsonLong);
 var jsonInt = new JsonInt(31);
 analyze(jsonInt);
-
-// Snippet 2
-// Title: Primitive Pattern Matching for Switch
-sealed interface JsonNumber permits
-      JsonDouble, JsonFloat, JsonLong, JsonInt {}
-record JsonDouble(double d) implements JsonNumber {}
-record JsonFloat(float f) implements JsonNumber {}
-record JsonLong(long i) implements JsonNumber {}
-record JsonInt(int i) implements JsonNumber {}
-
-void analyze(JsonNumber jsonNumber) {
-    switch(jsonNumber) {
-        case JsonDouble(double d) -> System.out.println("Double: " + d);
-        case JsonFloat(float f) -> System.out.println("Float: " + f);
-        case JsonLong(long l) -> System.out.println("Long: " + l);
-        case JsonInt(int i) -> System.out.println("Int: " + i);
-    }
-}
-
-JsonNumber jsonNumber = new JsonDouble(Math.PI);
-analyze(jsonNumber);
-jsonNumber = new JsonFloat((float)Math.PI);
-analyze(jsonNumber);
-jsonNumber = new JsonLong(314L);
-analyze(jsonNumber);
-jsonNumber = new JsonInt(31);
-analyze(jsonNumber);

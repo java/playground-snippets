@@ -1,0 +1,21 @@
+// Double Number to Integer Number Primitive Pattern
+sealed interface JsonNumber
+    permits JsonDouble, JsonLong, JsonInt, JsonByte {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonLong(long l) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+record JsonByte(byte b) implements JsonNumber {}
+
+JsonNumber narrow(double number) {
+    return switch (number) {
+      case byte b -> new JsonByte(b);
+      case int i -> new JsonInt(i);
+      case long l -> new JsonLong(l);
+      case double d -> new JsonDouble(d);
+    };
+}
+
+System.out.println("Double to byte: " + narrow(10d));
+System.out.println("Double to int: " + narrow(1_000d));
+System.out.println("Double to long: " + narrow(8_000_000_000d));
+System.out.println("Cant convert: " + narrow(3.14d));
