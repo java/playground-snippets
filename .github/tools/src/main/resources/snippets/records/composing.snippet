@@ -1,0 +1,11 @@
+record Population(int population) {}
+record City(String name, Population population) {
+    // static methods are allowed in records
+    public static City of(String name, int p) {
+        var population = new Population(p);
+        return new City(name, population);
+    }
+}
+
+var paris = City.of("Paris", 2_161);
+System.out.println(paris);
