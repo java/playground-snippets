@@ -1,4 +1,4 @@
-// Distinct Ignore Case Gatherer
+// Distinct Ignore Case Parallel Gatherer
 static Gatherer<String, ?, String> distinctIgnoreCase() {
 
    return Gatherer.of(
@@ -20,6 +20,6 @@ static Gatherer<String, ?, String> distinctIgnoreCase() {
 }
 
 var stream = Stream.of("one", "One", "ONE", "Two", "two", "tWo");
-var result = stream.gather(distinctIgnoreCase()).toList();
+var result = stream.parallel.gather(distinctIgnoreCase()).toList();
 System.out.println("result = " + result);
 
