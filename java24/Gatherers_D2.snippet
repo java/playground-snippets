@@ -1,0 +1,71 @@
+// Zipping With Default Value Gatherer
+static <T> Gatherer<T, ?, T> zip(
+   Iterable<T> iterable,
+   T defaultValue) {
+
+   class State {
+      private final Iterator<T> iterator;
+      private boolean nextIsElement = true;
+      private boolean hasNextElement = false;
+      private T element;
+
+      State(Iterator<T> iterator) {
+         this.iterator = iterator;
+      }
+
+      boolean hasNext() {
+         if (nextIsElement) {
+            return hasNextElement;
+         } else {
+         return true;
+         }
+      }
+
+      T next() {
+         if (nextIsElement) {
+            nextIsElement = false;
+            hasNextElement = false;
+            return element;
+         } else {
+            nextIsElement = true;
+            if (iterator.hasNext()) {
+               return iterator.next();
+            } else {
+               hasNextElement = false;
+               return defaultValue;
+            }
+         }
+      }
+
+      public void addElement(T element) {
+         this.element = element;
+         this.hasNextElement = true;
+      }
+   }
+
+   return Gatherer.ofSequential(
+      () -> new State(iterable.iterator()),
+      (state, element, downstream) -> {
+         state.addElement(element);
+         if (state.hasNext()) {
+            boolean isRejecting = !downstream.push(state.next());
+            if (isRejecting) {
+               return false;
+            }
+         }
+         if (state.hasNext()) {
+            boolean isRejecting = !downstream.push(state.next());
+            if (isRejecting) {
+               return false;
+            }
+         }
+         return true;
+      }
+   );
+}
+
+var evens = List.of("0", "2", "4", "6", "8");
+var odds  = List.of("1", "3", "5");
+
+var result = evens.stream().gather(zip(odds::iterator, "NO_VALUE")).toList();
+System.out.println("result = " + result);

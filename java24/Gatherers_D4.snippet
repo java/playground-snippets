@@ -1,0 +1,25 @@
+// Combining With Default Value Gatherer
+static <T, R, RR> Gatherer<T, ?, RR> zip(
+   Iterable<R> iterable,
+   BiFunction<? super T, ? super R, ? extends RR> combiner,
+   R defaultValue) {
+
+   return Gatherer.ofSequential(
+      iterable::iterator,
+      (iterator, element, downstream) -> {
+         if (iterator.hasNext()) {
+            var result = combiner.apply(element, iterator.next());
+            return downstream.push(result);
+         } else {
+            var result = combiner.apply(element, defaultValue);
+            return downstream.push(result);
+         }
+      }
+   );
+}
+
+var strings = List.of("one", "two", "three");
+var ints = List.of(1, 2, 3, 4, 5);
+
+var result = ints.stream().gather(zip(strings, (i, s) -> i + " -> " + s, "NO_VALUE")).toList();
+System.out.println("result = " + result);

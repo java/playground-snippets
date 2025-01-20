@@ -1,0 +1,28 @@
+// Custom Equal Collecting Parallel Gatherer
+static <T, R, RR> Gatherer<T, ?, RR> customEqualCollecting(
+   Function<? super T, ? extends R> equalMapper,
+   Collector<? super T, ?, ? extends RR> collector) {
+
+return Gatherer.of(
+   () -> new HashMap<R, List<T>>(),
+   (map, element, _) -> {
+      var key = equalMapper.apply(element);
+      map.computeIfAbsent(key, _ -> new ArrayList<>()).add(element);
+      return true;
+   },
+   (map1, map2) -> {
+      map2.forEach((key, value) -> map1.merge(key, value, (v1, v2) -> { v1.addAll(v2); return v1; }));
+      return map1;
+   },
+   (map, downstream) -> {
+      map.values().stream()
+         .takeWhile(_ -> !downstream.isRejecting())
+         .map(values -> values.stream().collect(collector))
+         .forEach(downstream::push);
+      }
+   );
+}
+
+var stream = Stream.of("one", "One", "ONE", "Two", "two", "tWo", "Three", "three");
+var result = stream.gather(customEqualCollecting(String::toLowerCase, Collectors.toList())).toList();
+System.out.println("result = " + result);

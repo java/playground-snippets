@@ -1,0 +1,24 @@
+// Sort Gatherer
+static <T> Gatherer<T, ?, T> sortWithComparator(Comparator<? super T> comparator) {
+   return Gatherer.ofSequential(
+      () -> new ArrayList<T>(),
+      (list, element, _) -> {
+         list.add(element);
+         return true;
+      },
+      (list, downstream) -> {
+         list.sort(comparator);
+         list.stream()
+             .takeWhile(_ -> !downstream.isRejecting())
+             .forEach(downstream::push);
+      }
+   );
+}
+
+static <T extends Comparable<? super T>> Gatherer<T, ?, T> sort() {
+    return sortWithComparator(Comparator.<T>naturalOrder());
+}
+
+var stream = Stream.of(3, 2, 4, 5, 3, 1, 2, 5, 4);
+var result = stream.gather(sort()).toList();
+System.out.println("result = " + result);

@@ -1,0 +1,9 @@
+// Mapping Gatherer
+var strings = List.of("one", "two", "three", "four", "five");
+Gatherer<String, ?, Integer> mapping =
+   Gatherer.of(
+      (_, element, downstream) -> downstream.push(element.length()));
+var result = strings.stream()
+   .gather(mapping)
+   .toList();
+System.out.println("result = " + result);

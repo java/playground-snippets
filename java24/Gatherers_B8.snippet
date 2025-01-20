@@ -1,0 +1,48 @@
+// Sort Parallel Gatherer
+static <T> Gatherer<T, ?, T> sortWithComparator(Comparator<? super T> comparator) {
+
+   return Gatherer.of(
+      () -> new ArrayList<T>(),
+      (list, element, _) -> {
+         list.add(element);
+         return true;
+      },
+      (list1, list2) -> {
+         list1.sort(comparator);
+         list2.sort(comparator);
+         int initialCapacity = list1.size() + list2.size();
+         var list3 = new ArrayList<T>(initialCapacity);
+         for (int index1 = 0, index2 = 0, index3 = 0; index3 < initialCapacity; index3++) {
+            if (index1 < list1.size() && index2 < list2.size()) {
+               if (comparator.compare(list1.get(index1), list2.get(index2)) < 0) {
+                  list3.add(list1.get(index1));
+                  index1++;
+               } else {
+                  list3.add(list2.get(index2));
+                  index2++;
+               }
+            } else if (index1 < list1.size()) {
+               list3.add(list1.get(index1));
+               index1++;
+            } else if (index2 < list2.size()) {
+               list3.add(list2.get(index2));
+               index2++;
+            }
+         }
+         return list3;
+      },
+      (list, downstream) -> {
+         list.stream()
+             .takeWhile(_ -> !downstream.isRejecting())
+             .forEach(downstream::push);
+      }
+   );
+}
+
+static <T extends Comparable<? super T>> Gatherer<T, ?, T> sort() {
+   return sortWithComparator(Comparator.naturalOrder());
+}
+
+var stream = Stream.of(3, 2, 4, 5, 3, 1, 2, 5, 4);
+var result = stream.parallel().gather(sort()).toList();
+System.out.println("result = " + result);

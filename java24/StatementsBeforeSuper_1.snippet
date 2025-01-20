@@ -1,0 +1,34 @@
+// Statement before super
+static class Shape {
+    private String name;
+    public Shape(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("User should not be null");
+        }
+        super();
+        this.name = name;
+    }
+    public String name() {
+        return name;
+    }
+}
+
+static class Square extends Shape {
+    private int edge;
+    public Square(int edge) {
+        if (edge <= 0) {
+            throw new IllegalArgumentException("Edge should be greater than 0");
+        }
+        super("Square");
+        this.edge = edge;
+    }
+    public int edge() {
+        return edge;
+    }
+    public String toString() {
+        return "Square[" + edge + "]";
+    }
+}
+
+Square square = new Square(100);
+System.out.println("square = " + square);

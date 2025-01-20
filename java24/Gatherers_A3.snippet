@@ -1,0 +1,19 @@
+// Flatmapping Gatherer
+var strings = List.of("one", "two", "three", "four", "five");
+Gatherer<String, ?, String> flatMapping =
+   Gatherer.of(
+      (_, element, downstream) -> {
+         var chars = element.toCharArray();
+         int index = 0;
+         boolean isRejecting = false;
+         do {
+            isRejecting = !downstream.push(Character.toString(chars[index]));
+            index++;
+         } while (index < chars.length && !isRejecting);
+         return !isRejecting;
+   });
+var result = strings.stream()
+   .gather(flatMapping)
+   .distinct()
+   .toList();
+System.out.println("result = " + result);

@@ -1,0 +1,25 @@
+// Sort Distinct Gatherer
+static <T> Gatherer<T, ?, T> sortDistinctWithComparator(Comparator<? super T> comparator) {
+
+   return Gatherer.ofSequential(
+      () -> new TreeSet<T>(comparator),
+         (list, element, _) -> {
+         list.add(element);
+         return true;
+      },
+      (list, downstream) -> {
+         list.stream()
+             .takeWhile(_ -> !downstream.isRejecting())
+             .forEach(downstream::push);
+         }
+   );
+}
+
+static <T extends Comparable<? super T>> Gatherer<T, ?, T> sortDistinct() {
+	return sortDistinctWithComparator(Comparator.naturalOrder());
+}
+
+
+var stream = Stream.of(3, 2, 4, 5, 3, 1, 2, 5, 4);
+var result = stream.gather(sortDistinct()).toList();
+System.out.println("result = " + result);

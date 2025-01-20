@@ -1,0 +1,22 @@
+// Combining Gatherer
+static <T, R, RR> Gatherer<T, ?, RR> zip(
+   Iterable<R> iterable,
+   BiFunction<? super T, ? super R, ? extends RR> combiner) {
+
+   return Gatherer.ofSequential(
+      iterable::iterator,
+      (iterator, element, downstream) -> {
+         if (iterator.hasNext()) {
+            var result = combiner.apply(element, iterator.next());
+            return downstream.push(result);
+         }
+         return false;
+      }
+   );
+}
+
+var strings = List.of("one", "two", "three");
+var ints = List.of(1, 2, 3, 4, 5);
+
+var result = ints.stream().gather(zip(strings, (i, s) -> i + " -> " + s)).toList();
+System.out.println("result = " + result);

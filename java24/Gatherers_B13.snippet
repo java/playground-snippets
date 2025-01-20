@@ -1,0 +1,23 @@
+// Distinct Ignore Case With Comparator Gatherer
+static Gatherer<String, ?, String> distinctIgnoreCase() {
+
+   return Gatherer.ofSequential(
+      () -> new HashMap<String, String>(),
+      (map, element, _) -> {
+         map.merge(
+            element.toLowerCase(),
+            element,
+            (e1, e2) -> e1.compareTo(e2) < 0 ? e1 : e2);
+         return true;
+      },
+      (map, downstream) -> {
+         map.values().stream()
+            .takeWhile(_ -> !downstream.isRejecting())
+            .forEach(downstream::push);
+      }
+   );
+}
+
+var stream = Stream.of("one", "One", "ONE", "Two", "two", "tWo");
+var result = stream.gather(distinctIgnoreCase()).toList();
+System.out.println("result = " + result);
