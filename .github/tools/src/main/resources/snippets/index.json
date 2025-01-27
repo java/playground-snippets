@@ -1,0 +1,20 @@
+{
+	"misc/simple-collection.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/misc/simple-collection.snippet",
+	"misc/func-interface.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/misc/func-interface.snippet",
+	"misc/functions-chaining.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/misc/functions-chaining.snippet",
+	"records/composing.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/records/composing.snippet",
+	"records/simple.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/records/simple.snippet",
+	"records/method-overriding.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/records/method-overriding.snippet",
+	"streams/filtering.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/streams/filtering.snippet",
+	"streams/stream-to-list.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/streams/stream-to-list.snippet",
+	"streams/text-block-to-stream.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/streams/text-block-to-stream.snippet",
+	"textblocks/formatting.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/textblocks/formatting.snippet",
+	"textblocks/simple.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/textblocks/simple.snippet",
+	"textblocks/record.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/textblocks/record.snippet",
+	"hello-world.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/hello-world.snippet",
+	"switch/expression.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/switch/expression.snippet",
+	"switch/pattern-matching.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/switch/pattern-matching.snippet",
+	"switch/statement.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/switch/statement.snippet",
+	"pattern-matching/record.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/pattern-matching/record.snippet",
+	"pattern-matching/switch.snippet": "https://raw.githubusercontent.com/java/playground-snippets/main/pattern-matching/switch.snippet"
+}
