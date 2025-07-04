@@ -1,0 +1,27 @@
+// Scoped Values
+// Setting Scoped Values
+ScopedValue<String> MESSAGE = ScopedValue.newInstance();
+
+void anyMethod() {
+    if (MESSAGE.isBound()) {
+        IO.println("   Message = " + MESSAGE.get());
+    } else {
+        IO.println("   Message is not bound");
+    }
+}
+
+void rebindingMethod() {
+    anyMethod();
+    ScopedValue.where(MESSAGE, "I am rebound")
+          .run(() -> anyMethod());
+}
+
+Runnable task = () -> anyMethod();
+Runnable rebindingTask = () -> rebindingMethod();
+IO.println("Running a method without binding");
+task.run();
+IO.println("Running a method with a binding");
+ScopedValue.where(MESSAGE, "I am bound").run(task);
+IO.println("Running a method with a rebinding");
+ScopedValue.where(MESSAGE, "I am bound").run(rebindingTask);
+
