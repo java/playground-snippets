@@ -1,0 +1,5 @@
+Stream<String> stream = Stream.of("Shenzhen", "Brussels", "Taipei", "Buenos Aires", "Sydney", "Bristol");
+
+List<String> cities = stream.sorted().collect(Collectors.toList());
+
+System.out.println(cities);
