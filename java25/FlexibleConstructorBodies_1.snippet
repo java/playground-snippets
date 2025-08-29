@@ -1,5 +1,5 @@
-// Flexible Constructor Bodies
 // Null Final Field
+
 class A {
     A() {
         a();
@@ -25,43 +25,3 @@ class B extends A {
 var a = new A();
 var b = new B("This is B");
 
-
-
-// Snippet 2
-// Title: Flexible Constructor Body
-
-class Shape {
-    private String name;
-    public Shape(String name) {
-        IO.println("Trying to create a shape: " + name);
-        if (name == null) {
-            throw new IllegalArgumentException("Name should not be null");
-        }
-        super();
-        this.name = name;
-    }
-    public String name() {
-        return name;
-    }
-}
-
-class Square extends Shape {
-    private int edge;
-    public Square(int edge) {
-        if (edge <= 0) {
-            throw new IllegalArgumentException("Edge should be greater than 0");
-        }
-        super("Square");
-        this.edge = edge;
-    }
-    public int edge() {
-        return edge;
-    }
-    public String toString() {
-        return "Square[" + edge + "]";
-    }
-}
-
-var square = new Square(100);
-IO.println("square = " + square);
-var invalidSquare = new Square(-100);

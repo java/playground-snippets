@@ -1,0 +1,17 @@
+// Narrowing Floating Point Number Primitive Pattern
+
+sealed interface JsonNumber
+    permits JsonDouble, JsonFloat {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+
+JsonNumber narrow(double number) {
+    return switch (number) {
+      case float f -> new JsonFloat(f);
+      case double d -> new JsonDouble(d);
+    };
+}
+
+IO.println("Narrowing to float " + narrow(3.0d));
+IO.println("Not Narrowing " + narrow(3.14d));
+IO.println("Not Narrowing " + narrow(Math.PI));

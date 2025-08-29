@@ -1,5 +1,5 @@
-// Scoped Values
 // Setting Scoped Values
+
 ScopedValue<String> MESSAGE = ScopedValue.newInstance();
 
 void anyMethod() {
@@ -24,4 +24,3 @@ IO.println("Running a method with a binding");
 ScopedValue.where(MESSAGE, "I am bound").run(task);
 IO.println("Running a method with a rebinding");
 ScopedValue.where(MESSAGE, "I am bound").run(rebindingTask);
-

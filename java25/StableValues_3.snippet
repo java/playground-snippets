@@ -1,0 +1,17 @@
+// Stable Values with Suppliers
+
+class StableValuesWithSuppliers {
+    static Supplier<String> MESSAGE_1 = StableValue.supplier(() -> {
+        IO.println("I am initializing MESSAGE_1");
+        return "Message 1";
+    });
+    static Supplier<String> MESSAGE_2 = StableValue.supplier(() -> {
+        IO.println("I am initializing MESSAGE_1");
+        return "Message 2";
+    });
+}
+
+IO.println("I am using MESSAGE_1 from its supplier " + StableValuesWithSuppliers.MESSAGE_1.get());
+IO.println("I am using MESSAGE_2 from its supplier " + StableValuesWithSuppliers.MESSAGE_2.get());
+IO.println("I am using MESSAGE_1 again: " + StableValuesWithSuppliers.MESSAGE_1.get());
+IO.println("I am using MESSAGE_2 again: " + StableValuesWithSuppliers.MESSAGE_2.get());

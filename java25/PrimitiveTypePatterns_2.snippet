@@ -1,0 +1,26 @@
+// Primitive Pattern Matching for Switch
+
+sealed interface JsonNumber permits
+      JsonDouble, JsonFloat, JsonLong, JsonInt {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+record JsonLong(long i) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+
+void analyze(JsonNumber jsonNumber) {
+    switch(jsonNumber) {
+        case JsonDouble(double d) -> IO.println("Double: " + d);
+        case JsonFloat(float f) -> IO.println("Float: " + f);
+        case JsonLong(long l) -> IO.println("Long: " + l);
+        case JsonInt(int i) -> IO.println("Int: " + i);
+    }
+}
+
+JsonNumber jsonNumber = new JsonDouble(Math.PI);
+analyze(jsonNumber);
+jsonNumber = new JsonFloat((float)Math.PI);
+analyze(jsonNumber);
+jsonNumber = new JsonLong(314L);
+analyze(jsonNumber);
+jsonNumber = new JsonInt(31);
+analyze(jsonNumber);

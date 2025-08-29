@@ -1,0 +1,16 @@
+// Boolean Primitive Pattern
+
+sealed interface JsonBoolean
+    permits JsonTrue, JsonFalse {}
+record JsonTrue() implements JsonBoolean {}
+record JsonFalse() implements JsonBoolean {}
+
+JsonBoolean box(boolean value) {
+    return switch (value) {
+      case true -> new JsonTrue();
+      case false -> new JsonFalse();
+    };
+}
+
+IO.println("Boxing true: " + box(true));
+IO.println("Boxing false: " + box(false));

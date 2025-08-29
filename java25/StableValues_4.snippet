@@ -1,0 +1,25 @@
+// Stable Values with factories
+
+class StableValuesWithFactories {
+    static StableValue<String> MESSAGE_1 = StableValue.of();
+    static StableValue<String> MESSAGE_2 = StableValue.of();
+
+    static String message1() {
+        return MESSAGE_1.orElseSet(() -> {
+            IO.println("I am initializing MESSAGE_1");
+            return "Message 1";
+        });
+    }
+
+    static String message2() {
+        return MESSAGE_2.orElseSet(() -> {
+            IO.println("I am initializing MESSAGE_2");
+            return "Message 2";
+        });
+    }
+}
+
+IO.println("I am using only " + StableValuesWithFactories.message1());
+IO.println("Now I am also using " + StableValuesWithFactories.message2());
+IO.println("I am using MESSAGE_1 again: " + StableValuesWithFactories.message1());
+IO.println("I am using MESSAGE_2 again: " + StableValuesWithFactories.message2());

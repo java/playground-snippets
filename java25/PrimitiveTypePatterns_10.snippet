@@ -1,0 +1,75 @@
+// JSON Analysis
+
+sealed interface JsonValue {
+    Pattern pattern = Pattern.compile("""
+          ^\\s*\\{\\s*"(?<k1>\\w*)"\\s*:\\s*"(?<v1>\\w*)"\\s*,\\s*"(?<k2>\\w*)"\\s*:\\s*(?<v2>\\d*.\\d*)\\s*}\\s*$""");
+
+    static JsonValue of(String json) {
+        var matcher = pattern.matcher(json);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("invalid json");
+        }
+        var map = new HashMap<String, JsonValue>();
+        var k1 = matcher.group("k1");
+        var v1 = matcher.group("v1");
+        var jsonString = new JsonString(v1);
+        map.put(k1, jsonString);
+        var k2 = matcher.group("k2");
+        var v2 = matcher.group("v2");
+        var jsonNumber = new JsonNumber(Double.parseDouble(v2));
+        map.put(k2, jsonNumber);
+
+        return new JsonObject(map);
+    }
+
+    record JsonString(String s) implements JsonValue {}
+    record JsonNumber(double d) implements JsonValue {}
+    record JsonObject(Map<String, JsonValue> map) implements JsonValue {}
+}
+
+
+record User(String name, int age) {
+    public User {
+        Objects.requireNonNull(name);
+        if (age < 0 || age > 130) {
+            throw new IllegalArgumentException("age must be between 0 and 130");
+        }
+    }
+
+    static User of(JsonValue jsonValue) {
+        if (jsonValue instanceof JsonValue.JsonObject(var map) &&
+              map.get("name") instanceof JsonValue.JsonString(var name) &&
+              map.get("age") instanceof JsonValue.JsonNumber(int age)) {
+            return new User(name, age);
+        } else {
+            if (jsonValue instanceof JsonValue.JsonObject(var map)
+                && !(map.get("age") instanceof JsonValue.JsonNumber(int _))) {
+                    throw new IllegalArgumentException("Invalid age in Json: " + map.get("age"));
+            } else {
+                throw new IllegalArgumentException("Invalid JsonValue: " + jsonValue);
+            }
+        }
+    }
+}
+
+
+var jsonMary = """
+      {
+        "name": "Mary",
+        "age": 27
+      }
+      """;
+
+var jsonJohn = """
+      {
+        "name": "John",
+        "age": 23.5
+      }
+      """;
+
+var jsonValue = JsonValue.of(jsonMary);
+var mary = User.of(jsonValue);
+IO.println(mary);
+
+jsonValue = JsonValue.of(jsonJohn);
+var john = User.of(jsonValue);

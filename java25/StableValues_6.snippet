@@ -1,0 +1,15 @@
+// Stable Values as Maps
+
+class StableValueAsMaps {
+    static Map<Integer, String> MAP = StableValue.map(Set.of(1, 2, 3), key -> {
+        IO.println("Initializing key value pair for the key " + key);
+        return "I am bound to key " + key;
+    });
+}
+
+IO.println("Size of MAP: " + StableValueAsMaps.MAP.size());
+IO.println("Keys of MAP: " + StableValueAsMaps.MAP.keySet());
+IO.println("Values bound to 2: " + StableValueAsMaps.MAP.get(2));
+IO.println("Values bound to 4: " + StableValueAsMaps.MAP.get(4));
+IO.println("Values bound to 2 again: " + StableValueAsMaps.MAP.get(2));
+IO.println("The rest is not initialized");

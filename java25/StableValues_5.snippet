@@ -1,0 +1,13 @@
+// Stable Values as Lists
+
+class StableValueAsLists {
+    static List<String> LIST = StableValue.list(10, index -> {
+        IO.println("Initializing element at index " + index);
+        return "Element " + index;
+    });
+}
+
+IO.println("Size of LIST: " + StableValueAsLists.LIST.size());
+IO.println("Element at index 3 " + StableValueAsLists.LIST.get(3));
+IO.println("Element at index 15 " + StableValueAsLists.LIST.get(15));
+IO.println("The rest is not initialized");

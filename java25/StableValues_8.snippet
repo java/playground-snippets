@@ -1,0 +1,23 @@
+// Stable Values as IntFunctions
+
+class StableValuesAsIntFunctions {
+    static IntFunction<BigInteger> FACTORIAL = StableValue.intFunction(
+          50, number -> {
+              IO.println("Computing factorial of " + number);
+              return factorial(number);
+          });
+
+    static BigInteger factorial(int n) {
+        BigInteger result = BigInteger.ONE;
+        for (int i = 1; i <= n; i++) {
+            result = result.multiply(BigInteger.valueOf(i));
+        }
+        return result;
+    }
+}
+
+IO.println("Factorial of 10 = " + StableValuesAsIntFunctions.FACTORIAL.apply(10));
+IO.println("Factorial of 15 = " + StableValuesAsIntFunctions.FACTORIAL.apply(15));
+IO.println("Factorial of 20 = " + StableValuesAsIntFunctions.FACTORIAL.apply(20));
+IO.println("Factorial of 10 = " + StableValuesAsIntFunctions.FACTORIAL.apply(10));
+IO.println("Factorial of 90 = " + StableValuesAsIntFunctions.FACTORIAL.apply(30));

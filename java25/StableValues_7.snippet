@@ -1,0 +1,18 @@
+// Stable Values as Functions
+
+record User(String name) {
+    public User {
+        IO.println("Initializing User for name " + name);
+    }
+}
+
+class StableValuesAsFunctions {
+    static Function<String, User> FUNCTION = StableValue.function(
+          Set.of("Mary", "James", "Patricia", "Michael"), User::new);
+}
+
+IO.println("Values bound to Mary: " + StableValuesAsFunctions.FUNCTION.apply("Mary"));
+IO.println("Values bound to James: " + StableValuesAsFunctions.FUNCTION.apply("James"));
+IO.println("The rest is not initialized");
+IO.println("Values bound to Mary again: " + StableValuesAsFunctions.FUNCTION.apply("Mary"));
+IO.println("Values bound to Jennifer again: " + StableValuesAsFunctions.FUNCTION.apply("Jennifer"));
