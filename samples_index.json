@@ -1,0 +1,281 @@
+[
+  {
+    "category": "Hello World",
+    "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/HelloWorld.snippet",
+    "badge": {
+      "text": "Java 25",
+      "type": "java-version"
+    }
+  },
+  {
+    "category": "Records",
+    "subcategories": [
+      {
+        "category": "Simple record",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Record_1.snippet"
+      },
+      {
+        "category": "Composing",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Record_2.snippet"
+      },
+      {
+        "category": "Composing",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Record_2.snippet"
+      },
+      {
+        "category": "Method overriding",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Record_3.snippet"
+      }
+    ]
+  },
+  {
+    "category": "Unnamed Pattern",
+    "subcategories": [
+      {
+        "category": "Consumer with Unnamed Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Unamed_Pattern_1.snippet"
+      },
+      {
+        "category": "Function with Unnamed Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Unamed_Pattern_2.snippet"
+      },
+      {
+        "category": "BiFunction with Unnamed Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Unamed_Pattern_3.snippet"
+      },
+      {
+        "category": "Pattern Matching with Unnamed Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Unamed_Pattern_4.snippet"
+      }
+    ]
+  },
+  {
+    "category": "Gatherers",
+    "subcategories": [
+      {
+        "category": "Simple",
+        "subcategories": [
+          {
+            "category": "Filtering",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_A1.snippet"
+          },
+          {
+            "category": "Mapping",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_A2.snippet"
+          },
+          {
+            "category": "Flatmapping",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_A3.snippet"
+          }
+        ]
+      },
+      {
+        "category": "Intermediate",
+        "subcategories": [
+          {
+            "category": "Map filter",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B1.snippet"
+          },
+          {
+            "category": "Limit",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B3.snippet"
+          },
+          {
+            "category": "Distinct",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B5.snippet"
+          },
+          {
+            "category": "Sort Distinct",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B9.snippet"
+          },
+          {
+            "category": "Distinct Ignore Case",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B11.snippet"
+          },
+          {
+            "category": "Custom Equal",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B15.snippet"
+          },
+          {
+            "category": "Custom Equal Collecting",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_B17.snippet"
+          }
+        ]
+      },
+      {
+        "category": "Combining",
+        "subcategories": [
+          {
+            "category": "Zipping",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_D1.snippet"
+          },
+          {
+            "category": "Zipping with Default Value",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_D2.snippet"
+          },
+          {
+            "category": "Combining",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_D3.snippet"
+          },
+          {
+            "category": "Combining with Default Value",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java24/Gatherers_D4.snippet"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Switch and Sealed Types",
+    "subcategories": [
+      {
+        "category": "Switch and Sealed Types",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Switch_on_Sealled_Types_1.snippet"
+      },
+      {
+        "category": "... with Record Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Switch_on_Sealled_Types_2.snippet"
+      },
+      {
+        "category": "... with Nested Record Patterns",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Switch_on_Sealled_Types_3.snippet"
+      },
+      {
+        "category": "... with Unnamed Patterns",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Switch_on_Sealled_Types_4.snippet"
+      },
+      {
+        "category": "... with Guarded Patterns",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/Switch_on_Sealled_Types_5.snippet"
+      }
+    ]
+  },
+  {
+    "category": "Primitive Type Pattern",
+    "badge": {
+      "text": "Java 25",
+      "type": "java-version"
+    },
+    "subcategories": [
+      {
+        "category": "... for instanceOf",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_1.snippet"
+      },
+      {
+        "category": "... for switch",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_2.snippet"
+      },
+      {
+        "category": "Narrowing Integer Number Primitive Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_3.snippet"
+      },
+      {
+        "category": "Integer Number to Floating Point Number Primitive Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_5.snippet"
+      },
+      {
+        "category": "Floating Point Number to Integer Number Primitive Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_6.snippet"
+      },
+      {
+        "category": "Double Number to Integer Number Primitive Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_7.snippet"
+      },
+      {
+        "category": "Boolean Primitive Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_8.snippet"
+      },
+      {
+        "category": "Double Primitive Pattern",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java23/Primitive_Type_Pattern_9.snippet"
+      },
+      {
+        "category": "JSON Analysis",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/PrimitiveTypePatterns_10.snippet"
+      }
+    ]
+  },
+  {
+    "category": "Stable Values",
+    "badge": {
+      "text": "Java 25",
+      "type": "java-version"
+    },
+    "subcategories": [
+      {
+        "category": "Static Initializers",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_1.snippet"
+      },
+      {
+        "category": "Enum Initializers",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_2.snippet"
+      },
+      {
+        "category": "... with Suppliers",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_3.snippet"
+      },
+      {
+        "category": "... with Factories",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_4.snippet"
+      },
+      {
+        "category": "... as List",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_5.snippet"
+      },
+      {
+        "category": "... as Map",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_6.snippet"
+      },
+      {
+        "category": "... as Function",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_7.snippet"
+      },
+      {
+        "category": "... as IntFunction",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/StableValues_8.snippet"
+      }
+    ]
+  },
+  {
+    "category": "Miscelaneous",
+    "subcategories": [
+      {
+        "category": "Statement before super",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java22/StatementsBeforeSuper_1.snippet"
+      },
+      {
+        "category": "Streams",
+        "subcategories": [
+          {
+            "category": "Filtering",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Stream_1.snippet"
+          },
+          {
+            "category": "Stream to List",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Stream_2.snippet"
+          },
+          {
+            "category": "Text Block to Stream",
+            "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java21/Stream_3.snippet"
+          }
+        ]
+      },
+      {
+        "category": "Setting Scoped Values",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/ScopedValues_1.snippet",
+        "badge": {
+          "text": "Java 25",
+          "type": "java-version"
+        }
+      },
+      {
+        "category": "Flexible Constructor Body",
+        "source_url": "https://raw.githubusercontent.com/java/playground-snippets/main/java25/FlexibleConstructorBodies_2.snippet",
+        "badge": {
+          "text": "Java 25",
+          "type": "java-version"
+        }
+      }
+    ]
+  }
+]
