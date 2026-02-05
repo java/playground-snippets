@@ -3,7 +3,7 @@
   "menu_items": [
     {
       "category": "Hello World",
-      "source_uri": "java25/HelloWorld.snippet",
+      "source_uri": "java25/HelloWorld",
       "badge": {
         "text": "Java 25",
         "type": "java-version"
@@ -14,19 +14,19 @@
       "subcategories": [
         {
           "category": "Simple record",
-          "source_uri": "java21/Record_1.snippet"
+          "source_uri": "java21/Record_1"
         },
         {
           "category": "Composing",
-          "source_uri": "java21/Record_2.snippet"
+          "source_uri": "java21/Record_2"
         },
         {
           "category": "Composing",
-          "source_uri": "java21/Record_2.snippet"
+          "source_uri": "java21/Record_2"
         },
         {
           "category": "Method overriding",
-          "source_uri": "java21/Record_3.snippet"
+          "source_uri": "java21/Record_3"
         }
       ]
     },
@@ -35,19 +35,19 @@
       "subcategories": [
         {
           "category": "Consumer with Unnamed Pattern",
-          "source_uri": "java22/Unamed_Pattern_1.snippet"
+          "source_uri": "java22/Unamed_Pattern_1"
         },
         {
           "category": "Function with Unnamed Pattern",
-          "source_uri": "java22/Unamed_Pattern_2.snippet"
+          "source_uri": "java22/Unamed_Pattern_2"
         },
         {
           "category": "BiFunction with Unnamed Pattern",
-          "source_uri": "java22/Unamed_Pattern_3.snippet"
+          "source_uri": "java22/Unamed_Pattern_3"
         },
         {
           "category": "Pattern Matching with Unnamed Pattern",
-          "source_uri": "java22/Unamed_Pattern_4.snippet"
+          "source_uri": "java22/Unamed_Pattern_4"
         }
       ]
     },
@@ -59,15 +59,15 @@
           "subcategories": [
             {
               "category": "Filtering",
-              "source_uri": "java24/Gatherers_A1.snippet"
+              "source_uri": "java24/Gatherers_A1"
             },
             {
               "category": "Mapping",
-              "source_uri": "java24/Gatherers_A2.snippet"
+              "source_uri": "java24/Gatherers_A2"
             },
             {
               "category": "Flatmapping",
-              "source_uri": "java24/Gatherers_A3.snippet"
+              "source_uri": "java24/Gatherers_A3"
             }
           ]
         },
@@ -76,31 +76,31 @@
           "subcategories": [
             {
               "category": "Map filter",
-              "source_uri": "java24/Gatherers_B1.snippet"
+              "source_uri": "java24/Gatherers_B1"
             },
             {
               "category": "Limit",
-              "source_uri": "java24/Gatherers_B3.snippet"
+              "source_uri": "java24/Gatherers_B3"
             },
             {
               "category": "Distinct",
-              "source_uri": "java24/Gatherers_B5.snippet"
+              "source_uri": "java24/Gatherers_B5"
             },
             {
               "category": "Sort Distinct",
-              "source_uri": "java24/Gatherers_B9.snippet"
+              "source_uri": "java24/Gatherers_B9"
             },
             {
               "category": "Distinct Ignore Case",
-              "source_uri": "java24/Gatherers_B11.snippet"
+              "source_uri": "java24/Gatherers_B11"
             },
             {
               "category": "Custom Equal",
-              "source_uri": "java24/Gatherers_B15.snippet"
+              "source_uri": "java24/Gatherers_B15"
             },
             {
               "category": "Custom Equal Collecting",
-              "source_uri": "java24/Gatherers_B17.snippet"
+              "source_uri": "java24/Gatherers_B17"
             }
           ]
         },
@@ -109,19 +109,19 @@
           "subcategories": [
             {
               "category": "Zipping",
-              "source_uri": "java24/Gatherers_D1.snippet"
+              "source_uri": "java24/Gatherers_D1"
             },
             {
               "category": "Zipping with Default Value",
-              "source_uri": "java24/Gatherers_D2.snippet"
+              "source_uri": "java24/Gatherers_D2"
             },
             {
               "category": "Combining",
-              "source_uri": "java24/Gatherers_D3.snippet"
+              "source_uri": "java24/Gatherers_D3"
             },
             {
               "category": "Combining with Default Value",
-              "source_uri": "java24/Gatherers_D4.snippet"
+              "source_uri": "java24/Gatherers_D4"
             }
           ]
         }
@@ -132,23 +132,23 @@
       "subcategories": [
         {
           "category": "Switch and Sealed Types",
-          "source_uri": "java22/Switch_on_Sealled_Types_1.snippet"
+          "source_uri": "java22/Switch_on_Sealled_Types_1"
         },
         {
           "category": "... with Record Pattern",
-          "source_uri": "java22/Switch_on_Sealled_Types_2.snippet"
+          "source_uri": "java22/Switch_on_Sealled_Types_2"
         },
         {
           "category": "... with Nested Record Patterns",
-          "source_uri": "java22/Switch_on_Sealled_Types_3.snippet"
+          "source_uri": "java22/Switch_on_Sealled_Types_3"
         },
         {
           "category": "... with Unnamed Patterns",
-          "source_uri": "java22/Switch_on_Sealled_Types_4.snippet"
+          "source_uri": "java22/Switch_on_Sealled_Types_4"
         },
         {
           "category": "... with Guarded Patterns",
-          "source_uri": "java22/Switch_on_Sealled_Types_5.snippet"
+          "source_uri": "java22/Switch_on_Sealled_Types_5"
         }
       ]
     },
@@ -161,39 +161,39 @@
       "subcategories": [
         {
           "category": "... for instanceOf",
-          "source_uri": "java23/Primitive_Type_Pattern_1.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_1"
         },
         {
           "category": "... for switch",
-          "source_uri": "java23/Primitive_Type_Pattern_2.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_2"
         },
         {
           "category": "Narrowing Integer Number Primitive Pattern",
-          "source_uri": "java23/Primitive_Type_Pattern_3.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_3"
         },
         {
           "category": "Integer Number to Floating Point Number Primitive Pattern",
-          "source_uri": "java23/Primitive_Type_Pattern_5.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_5"
         },
         {
           "category": "Floating Point Number to Integer Number Primitive Pattern",
-          "source_uri": "java23/Primitive_Type_Pattern_6.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_6"
         },
         {
           "category": "Double Number to Integer Number Primitive Pattern",
-          "source_uri": "java23/Primitive_Type_Pattern_7.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_7"
         },
         {
           "category": "Boolean Primitive Pattern",
-          "source_uri": "java23/Primitive_Type_Pattern_8.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_8"
         },
         {
           "category": "Double Primitive Pattern",
-          "source_uri": "java23/Primitive_Type_Pattern_9.snippet"
+          "source_uri": "java23/Primitive_Type_Pattern_9"
         },
         {
           "category": "JSON Analysis",
-          "source_uri": "java25/PrimitiveTypePatterns_10.snippet"
+          "source_uri": "java25/PrimitiveTypePatterns_10"
         }
       ]
     },
@@ -206,65 +206,65 @@
       "subcategories": [
         {
           "category": "Static Initializers",
-          "source_uri": "java25/StableValues_1.snippet"
+          "source_uri": "java25/StableValues_1"
         },
         {
           "category": "Enum Initializers",
-          "source_uri": "java25/StableValues_2.snippet"
+          "source_uri": "java25/StableValues_2"
         },
         {
           "category": "... with Suppliers",
-          "source_uri": "java25/StableValues_3.snippet"
+          "source_uri": "java25/StableValues_3"
         },
         {
           "category": "... with Factories",
-          "source_uri": "java25/StableValues_4.snippet"
+          "source_uri": "java25/StableValues_4"
         },
         {
           "category": "... as List",
-          "source_uri": "java25/StableValues_5.snippet"
+          "source_uri": "java25/StableValues_5"
         },
         {
           "category": "... as Map",
-          "source_uri": "java25/StableValues_6.snippet"
+          "source_uri": "java25/StableValues_6"
         },
         {
           "category": "... as Function",
-          "source_uri": "java25/StableValues_7.snippet"
+          "source_uri": "java25/StableValues_7"
         },
         {
           "category": "... as IntFunction",
-          "source_uri": "java25/StableValues_8.snippet"
+          "source_uri": "java25/StableValues_8"
         }
       ]
     },
     {
-      "category": "Miscelaneous",
+      "category": "Miscellaneous",
       "subcategories": [
         {
           "category": "Statement before super",
-          "source_uri": "java22/StatementsBeforeSuper_1.snippet"
+          "source_uri": "java22/StatementsBeforeSuper_1"
         },
         {
           "category": "Streams",
           "subcategories": [
             {
               "category": "Filtering",
-              "source_uri": "java21/Stream_1.snippet"
+              "source_uri": "java21/Stream_1"
             },
             {
               "category": "Stream to List",
-              "source_uri": "java21/Stream_2.snippet"
+              "source_uri": "java21/Stream_2"
             },
             {
               "category": "Text Block to Stream",
-              "source_uri": "java21/Stream_3.snippet"
+              "source_uri": "java21/Stream_3"
             }
           ]
         },
         {
           "category": "Setting Scoped Values",
-          "source_uri": "java25/ScopedValues_1.snippet",
+          "source_uri": "java25/ScopedValues_1",
           "badge": {
             "text": "Java 25",
             "type": "java-version"
@@ -272,7 +272,7 @@
         },
         {
           "category": "Flexible Constructor Body",
-          "source_uri": "java25/FlexibleConstructorBodies_2.snippet",
+          "source_uri": "java25/FlexibleConstructorBodies_2",
           "badge": {
             "text": "Java 25",
             "type": "java-version"
