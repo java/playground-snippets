@@ -1,0 +1,287 @@
+Primitive Type Patterns
+
+
+// Snippet 1
+// Title: Primitive Pattern Matching for InstanceOf
+record JsonDouble(double d) {}
+record JsonFloat(float f) {}
+record JsonLong(long i) {}
+record JsonInt(int i) {}
+
+void analyze(Object o) {
+    if (o instanceof JsonDouble(double d)) {
+        IO.println("o is wrapping a double " + d);
+    } else if (o instanceof JsonLong(long l)) {
+        IO.println("o is wrapping a long " + l);
+    } else if (o instanceof JsonInt(int i)) {
+        IO.println("o is wrapping an int " + i);
+    } else {
+        IO.println("Unrecognized wrapper " + o);
+    }
+}
+
+var jsonDouble = new JsonDouble(Math.PI);
+analyze(jsonDouble);
+var jsonFloat = new JsonFloat((float)Math.PI);
+analyze(jsonFloat);
+var jsonLong = new JsonLong(314L);
+analyze(jsonLong);
+var jsonInt = new JsonInt(31);
+analyze(jsonInt);
+
+
+// Snippet 2
+// Title: Primitive Pattern Matching for Switch
+sealed interface JsonNumber permits
+      JsonDouble, JsonFloat, JsonLong, JsonInt {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+record JsonLong(long i) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+
+void analyze(JsonNumber jsonNumber) {
+    switch(jsonNumber) {
+        case JsonDouble(double d) -> IO.println("Double: " + d);
+        case JsonFloat(float f) -> IO.println("Float: " + f);
+        case JsonLong(long l) -> IO.println("Long: " + l);
+        case JsonInt(int i) -> IO.println("Int: " + i);
+    }
+}
+
+JsonNumber jsonNumber = new JsonDouble(Math.PI);
+analyze(jsonNumber);
+jsonNumber = new JsonFloat((float)Math.PI);
+analyze(jsonNumber);
+jsonNumber = new JsonLong(314L);
+analyze(jsonNumber);
+jsonNumber = new JsonInt(31);
+analyze(jsonNumber);
+
+
+// Snippet 3
+// Title: Narrowing Integer Number Primitive Pattern
+sealed interface JsonNumber
+    permits JsonLong, JsonInt, JsonChar, JsonByte {}
+record JsonLong(long l) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+record JsonChar(char i) implements JsonNumber {}
+record JsonByte(byte i) implements JsonNumber {}
+
+JsonNumber narrow(long number) {
+    return switch (number) {
+      case byte b -> new JsonByte(b);
+      case char c -> new JsonChar(c);
+      case int  i -> new JsonInt(i);
+      case long l -> new JsonLong(l);
+    };
+}
+
+IO.println("Narrowing to byte " + narrow(10L));
+IO.println("Narrowing to char " + narrow(200L));
+IO.println("Narrowing to int " + narrow(0x80000));
+IO.println("Not narrowing " + narrow(0x80000000L));
+
+
+// Snippet 4
+// Title: Narrowing Floating Point Number Primitive Pattern
+sealed interface JsonNumber
+    permits JsonDouble, JsonFloat {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+
+JsonNumber narrow(double number) {
+    return switch (number) {
+      case float f -> new JsonFloat(f);
+      case double d -> new JsonDouble(d);
+    };
+}
+
+IO.println("Narrowing to float " + narrow(3.0d));
+IO.println("Not Narrowing " + narrow(3.14d));
+IO.println("Not Narrowing " + narrow(Math.PI));
+
+
+// Snippet 5
+// Title: Integer Number to Floating Point Number Primitive Pattern
+sealed interface JsonNumber
+        permits JsonDouble, JsonFloat, JsonInt {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+
+JsonNumber narrow(int number) {
+    return switch (number) {
+      case float f -> new JsonFloat(f);
+      case double d -> new JsonDouble(d);
+    };
+}
+
+IO.println("Int to float: " + narrow(10));
+IO.println("Int to double: " + narrow(0x1000001));
+
+
+// Snippet 6
+// Title: Floating Point Number to Integer Number Primitive Pattern
+sealed interface JsonNumber
+    permits JsonDouble, JsonFloat, JsonInt, JsonByte {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+record JsonByte(byte b) implements JsonNumber {}
+
+JsonNumber narrow(float number) {
+    return switch (number) {
+      case byte b -> new JsonByte(b);
+      case int i -> new JsonInt(i);
+      case float f -> new JsonFloat(f);
+    };
+}
+
+IO.println("Float to byte: " + narrow(10f));
+IO.println("Float to int: " + narrow(1_000f));
+IO.println("Cant convert: " + narrow(3.14f));
+
+
+// Snippet 7
+// Title: Double Number to Integer Number Primitive Pattern
+sealed interface JsonNumber
+    permits JsonDouble, JsonLong, JsonInt, JsonByte {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonLong(long l) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+record JsonByte(byte b) implements JsonNumber {}
+
+JsonNumber narrow(double number) {
+    return switch (number) {
+      case byte b -> new JsonByte(b);
+      case int i -> new JsonInt(i);
+      case long l -> new JsonLong(l);
+      case double d -> new JsonDouble(d);
+    };
+}
+
+IO.println("Double to byte: " + narrow(10d));
+IO.println("Double to int: " + narrow(1_000d));
+IO.println("Double to long: " + narrow(8_000_000_000d));
+IO.println("Cant convert: " + narrow(3.14d));
+
+
+// Snippet 8
+// Title: Boolean Primitive Pattern
+sealed interface JsonBoolean
+    permits JsonTrue, JsonFalse {}
+record JsonTrue() implements JsonBoolean {}
+record JsonFalse() implements JsonBoolean {}
+
+JsonBoolean box(boolean value) {
+    return switch (value) {
+      case true -> new JsonTrue();
+      case false -> new JsonFalse();
+    };
+}
+
+IO.println("Boxing true: " + box(true));
+IO.println("Boxing false: " + box(false));
+
+
+// Snippet 9
+// Title: Double Primitive Pattern
+sealed interface JsonDouble
+    permits JsonZero, JsonNegative, JsonPositive {}
+record JsonZero() implements JsonDouble {}
+record JsonPositive() implements JsonDouble {}
+record JsonNegative() implements JsonDouble {}
+
+JsonDouble box(double value) {
+    return switch (value) {
+      case 0d -> new JsonZero();
+      case double v when v > 0d -> new JsonPositive();
+      case double v -> new JsonNegative();
+    };
+}
+
+IO.println("Boxing 0d: " + box(0d));
+IO.println("Boxing 10d: " + box(10d));
+IO.println("Boxing -10d: " + box(-10d));
+
+
+
+
+// Snippet 10
+// Title: JSON Analysis
+sealed interface JsonValue {
+    Pattern pattern = Pattern.compile("""
+          ^\\s*\\{\\s*"(?<k1>\\w*)"\\s*:\\s*"(?<v1>\\w*)"\\s*,\\s*"(?<k2>\\w*)"\\s*:\\s*(?<v2>\\d*.\\d*)\\s*}\\s*$""");
+
+    static JsonValue of(String json) {
+        var matcher = pattern.matcher(json);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException("invalid json");
+        }
+        var map = new HashMap<String, JsonValue>();
+        var k1 = matcher.group("k1");
+        var v1 = matcher.group("v1");
+        var jsonString = new JsonString(v1);
+        map.put(k1, jsonString);
+        var k2 = matcher.group("k2");
+        var v2 = matcher.group("v2");
+        var jsonNumber = new JsonNumber(Double.parseDouble(v2));
+        map.put(k2, jsonNumber);
+
+        return new JsonObject(map);
+    }
+
+    record JsonString(String s) implements JsonValue {}
+    record JsonNumber(double d) implements JsonValue {}
+    record JsonObject(Map<String, JsonValue> map) implements JsonValue {}
+}
+
+
+record User(String name, int age) {
+    public User {
+        Objects.requireNonNull(name);
+        if (age < 0 || age > 130) {
+            throw new IllegalArgumentException("age must be between 0 and 130");
+        }
+    }
+
+    static User of(JsonValue jsonValue) {
+        if (jsonValue instanceof JsonValue.JsonObject(var map) &&
+              map.get("name") instanceof JsonValue.JsonString(var name) &&
+              map.get("age") instanceof JsonValue.JsonNumber(int age)) {
+            return new User(name, age);
+        } else {
+            if (jsonValue instanceof JsonValue.JsonObject(var map)
+                && !(map.get("age") instanceof JsonValue.JsonNumber(int _))) {
+                    throw new IllegalArgumentException("Invalid age in Json: " + map.get("age"));
+            } else {
+                throw new IllegalArgumentException("Invalid JsonValue: " + jsonValue);
+            }
+        }
+    }
+}
+
+
+var jsonMary = """
+      {
+        "name": "Mary",
+        "age": 27
+      }
+      """;
+
+var jsonJohn = """
+      {
+        "name": "John",
+        "age": 23.5
+      }
+      """;
+
+var jsonValue = JsonValue.of(jsonMary);
+var mary = User.of(jsonValue);
+IO.println(mary);
+
+jsonValue = JsonValue.of(jsonJohn);
+var john = User.of(jsonValue);
+
+
+
