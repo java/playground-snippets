@@ -3,7 +3,7 @@ Third-Party Notices and/or Licenses
 
 
 -----------------------------------
-------- @codemirror/commands ------
+|   @codemirror/commands 
 -----------------------------------
 
 MIT License
@@ -83,7 +83,7 @@ THE SOFTWARE.
 
 
 -----------------------------------
-------- @codemirror/state ---------
+|   @codemirror/state
 -----------------------------------
 
 MIT License
@@ -138,7 +138,7 @@ THE SOFTWARE.
 
 
 -----------------------------------
--------- @codemirror/view ---------
+|   @codemirror/view
 -----------------------------------
 
 MIT License
@@ -268,7 +268,7 @@ THE SOFTWARE.
 
 
 -----------------------------------
------- @codemirror/lang-java ------
+|   @codemirror/lang-java
 -----------------------------------
 
 MIT License
@@ -348,7 +348,7 @@ THE SOFTWARE.
 
 
 -----------------------------------
----- @codemirror/autocomplete -----
+|   @codemirror/autocomplete
 -----------------------------------
 
 MIT License
@@ -428,7 +428,7 @@ THE SOFTWARE.
 
 
 -----------------------------------
-------------- Shoelace ------------
+|   Shoelace
 -----------------------------------
 
 Copyright (c) 2020 A Beautiful Site, LLC
