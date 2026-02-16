@@ -1,4 +1,4 @@
-// Title: Lazy Constants as Lists
+// Lazy Constants as Lists
 class LazyConstantAsLists {
     static List<String> LIST = List.ofLazy(10, index -> {
         IO.println("Initializing element at index " + index);
