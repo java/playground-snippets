@@ -1,0 +1,17 @@
+// Lazy Constants with Suppliers
+class LazyConstantsWithSuppliers {
+    static Supplier<String> MESSAGE_1 = LazyConstant.of(() -> {
+        IO.println("I am initializing MESSAGE_1");
+        return "Message 1";
+    });
+    static Supplier<String> MESSAGE_2 = LazyConstant.of(() -> {
+        IO.println("I am initializing MESSAGE_1");
+        return "Message 2";
+    });
+}
+​
+IO.println("I am using MESSAGE_1 from its supplier " + LazyConstantsWithSuppliers.MESSAGE_1.get());
+IO.println("I am using MESSAGE_2 from its supplier " + LazyConstantsWithSuppliers.MESSAGE_2.get());
+IO.println("I am using MESSAGE_1 again: " + LazyConstantsWithSuppliers.MESSAGE_1.get());
+IO.println("I am using MESSAGE_2 again: " + LazyConstantsWithSuppliers.MESSAGE_2.get());
+​

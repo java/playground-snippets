@@ -1,0 +1,18 @@
+// Enum Initializers
+enum ConstantsWithEnum {
+    MESSAGE_1("Message 1"), MESSAGE2("Message 2");
+​
+    private final String message;
+​
+    ConstantsWithEnum(String message) {
+        this.message = message;
+        IO.println("I am initializing " + message);
+    }
+​
+    public String message() {
+        return this.message;
+    }
+}
+​
+IO.println("I am using only " + ConstantsWithEnum.MESSAGE_1.message());
+IO.println("But the others has also been initialized");

@@ -1,0 +1,17 @@
+// Integer Number to Floating Point Number Primitive Pattern
+sealed interface JsonNumber
+        permits JsonDouble, JsonFloat, JsonInt {}
+record JsonDouble(double d) implements JsonNumber {}
+record JsonFloat(float f) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+
+JsonNumber narrow(int number) {
+    return switch (number) {
+      case float f -> new JsonFloat(f);
+      case double d -> new JsonDouble(d);
+    };
+}
+
+IO.println("Int to float: " + narrow(10));
+IO.println("Int to double: " + narrow(0x1000001));
+

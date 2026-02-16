@@ -1,0 +1,15 @@
+// Lazy Constants as Maps
+class LazyConstantAsMaps {
+    static Map<Integer, String> MAP = Map.ofLazy(Set.of(1, 2, 3), key -> {
+        IO.println("Initializing key value pair for the key " + key);
+        return "I am bound to key " + key;
+    });
+}
+
+IO.println("Size of MAP: " + LazyConstantAsMaps.MAP.size());
+IO.println("Keys of MAP: " + LazyConstantAsMaps.MAP.keySet());
+IO.println("Values of MAP: " + LazyConstantAsMaps.MAP.values());
+IO.println("Values bound to 2: " + LazyConstantAsMaps.MAP.get(2));
+IO.println("Values bound to 4: " + LazyConstantAsMaps.MAP.get(4));
+IO.println("Values bound to 2 again: " + LazyConstantAsMaps.MAP.get(2));
+IO.println("The rest is not initialized");

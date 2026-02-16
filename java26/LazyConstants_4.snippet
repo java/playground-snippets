@@ -1,0 +1,13 @@
+// Title: Lazy Constants as Lists
+class LazyConstantAsLists {
+    static List<String> LIST = List.ofLazy(10, index -> {
+        IO.println("Initializing element at index " + index);
+        return "Element " + index;
+    });
+}
+​
+IO.println("Size of LIST: " + LazyConstantAsLists.LIST.size());
+IO.println("Element at index 3 " + LazyConstantAsLists.LIST.get(3));
+IO.println("Element at index 15 does not exist " + LazyConstantAsLists.LIST.get(15));
+IO.println("The rest is not initialized");
+

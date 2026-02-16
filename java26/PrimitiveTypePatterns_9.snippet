@@ -1,0 +1,19 @@
+// Double Primitive Pattern
+sealed interface JsonDouble
+    permits JsonZero, JsonNegative, JsonPositive {}
+record JsonZero() implements JsonDouble {}
+record JsonPositive() implements JsonDouble {}
+record JsonNegative() implements JsonDouble {}
+
+JsonDouble box(double value) {
+    return switch (value) {
+      case 0d -> new JsonZero();
+      case double v when v > 0d -> new JsonPositive();
+      case double v -> new JsonNegative();
+    };
+}
+
+IO.println("Boxing 0d: " + box(0d));
+IO.println("Boxing 10d: " + box(10d));
+IO.println("Boxing -10d: " + box(-10d));
+

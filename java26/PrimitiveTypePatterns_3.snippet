@@ -1,0 +1,22 @@
+// Narrowing Integer Number Primitive Pattern
+sealed interface JsonNumber
+    permits JsonLong, JsonInt, JsonChar, JsonByte {}
+record JsonLong(long l) implements JsonNumber {}
+record JsonInt(int i) implements JsonNumber {}
+record JsonChar(char i) implements JsonNumber {}
+record JsonByte(byte i) implements JsonNumber {}
+
+JsonNumber narrow(long number) {
+    return switch (number) {
+      case byte b -> new JsonByte(b);
+      case char c -> new JsonChar(c);
+      case int  i -> new JsonInt(i);
+      case long l -> new JsonLong(l);
+    };
+}
+
+IO.println("Narrowing to byte " + narrow(10L));
+IO.println("Narrowing to char " + narrow(200L));
+IO.println("Narrowing to int " + narrow(0x80000));
+IO.println("Not narrowing " + narrow(0x80000000L));
+

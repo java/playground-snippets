@@ -1,0 +1,26 @@
+// Primitive Pattern Matching for InstanceOf
+record JsonDouble(double d) {}
+record JsonFloat(float f) {}
+record JsonLong(long i) {}
+record JsonInt(int i) {}
+
+void analyze(Object o) {
+    if (o instanceof JsonDouble(double d)) {
+        IO.println("o is wrapping a double " + d);
+    } else if (o instanceof JsonLong(long l)) {
+        IO.println("o is wrapping a long " + l);
+    } else if (o instanceof JsonInt(int i)) {
+        IO.println("o is wrapping an int " + i);
+    } else {
+        IO.println("Unrecognized wrapper " + o);
+    }
+}
+
+var jsonDouble = new JsonDouble(Math.PI);
+analyze(jsonDouble);
+var jsonFloat = new JsonFloat((float)Math.PI);
+analyze(jsonFloat);
+var jsonLong = new JsonLong(314L);
+analyze(jsonLong);
+var jsonInt = new JsonInt(31);
+analyze(jsonInt);

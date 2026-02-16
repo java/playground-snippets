@@ -1,15 +1,12 @@
 // Static Initializers
 class ConstantsWithStaticInitializers {
-
-    static String message1 = init1();
+​    static String message1 = init1();
     static String message2 = init2();
-
-    static String init1() {
+​    static String init1() {
         IO.println("I am initializing message 1");
         return "Message 1";
     }
-
-    static String init2() {
+​    static String init2() {
         IO.println("I am initializing message 2");
         return "Message 2";
     }
@@ -18,150 +15,7 @@ class ConstantsWithStaticInitializers {
         return "I actually don't use these static elements";
     }
 }
-
+​
 var initStaticStuff = new ConstantsWithStaticInitializers();
 IO.println(initStaticStuff.message());
-
-
-// Snippet 2
-// Title: Enum Initializers
-enum ConstantsWithEnum {
-    MESSAGE_1("Message 1"), MESSAGE2("Message 2");
-
-    private final String message;
-
-    ConstantsWithEnum(String message) {
-        this.message = message;
-        IO.println("I am initializing " + message);
-    }
-
-    public String message() {
-        return this.message;
-    }
-}
-
-IO.println("I am using only " + ConstantsWithEnum.MESSAGE_1.message());
-IO.println("But the other has also been initialized");
-
-
-// Snippet 3
-// Title: Stable Values with Suppliers
-class StableValuesWithSuppliers {
-    static Supplier<String> MESSAGE_1 = StableValue.supplier(() -> {
-        IO.println("I am initializing MESSAGE_1");
-        return "Message 1";
-    });
-    static Supplier<String> MESSAGE_2 = StableValue.supplier(() -> {
-        IO.println("I am initializing MESSAGE_1");
-        return "Message 2";
-    });
-}
-
-IO.println("I am using MESSAGE_1 from its supplier " + StableValuesWithSuppliers.MESSAGE_1.get());
-IO.println("I am using MESSAGE_2 from its supplier " + StableValuesWithSuppliers.MESSAGE_2.get());
-IO.println("I am using MESSAGE_1 again: " + StableValuesWithSuppliers.MESSAGE_1.get());
-IO.println("I am using MESSAGE_2 again: " + StableValuesWithSuppliers.MESSAGE_2.get());
-
-
-// Snippet 4
-// Title: Stable Values with factories
-class StableValuesWithFactories {
-    static StableValue<String> MESSAGE_1 = StableValue.of();
-    static StableValue<String> MESSAGE_2 = StableValue.of();
-
-    static String message1() {
-        return MESSAGE_1.orElseSet(() -> {
-            IO.println("I am initializing MESSAGE_1");
-            return "Message 1";
-        });
-    }
-
-    static String message2() {
-        return MESSAGE_2.orElseSet(() -> {
-            IO.println("I am initializing MESSAGE_2");
-            return "Message 2";
-        });
-    }
-}
-
-IO.println("I am using only " + StableValuesWithFactories.message1());
-IO.println("Now I am also using " + StableValuesWithFactories.message2());
-IO.println("I am using MESSAGE_1 again: " + StableValuesWithFactories.message1());
-IO.println("I am using MESSAGE_2 again: " + StableValuesWithFactories.message2());
-
-
-// Snippet 5
-// Title: Stable Values as Lists
-class StableValueAsLists {
-    static List<String> LIST = StableValue.list(10, index -> {
-        IO.println("Initializing element at index " + index);
-        return "Element " + index;
-    });
-}
-
-IO.println("Size of LIST: " + StableValueAsLists.LIST.size());
-IO.println("Element at index 3 " + StableValueAsLists.LIST.get(3));
-IO.println("Element at index 15 " + StableValueAsLists.LIST.get(15));
-IO.println("The rest is not initialized");
-
-
-// Snippet 6
-// Title: Stable Values as Maps
-class StableValueAsMaps {
-    static Map<Integer, String> MAP = StableValue.map(Set.of(1, 2, 3), key -> {
-        IO.println("Initializing key value pair for the key " + key);
-        return "I am bound to key " + key;
-    });
-}
-
-IO.println("Size of MAP: " + StableValueAsMaps.MAP.size());
-IO.println("Keys of MAP: " + StableValueAsMaps.MAP.keySet());
-IO.println("Values bound to 2: " + StableValueAsMaps.MAP.get(2));
-IO.println("Values bound to 4: " + StableValueAsMaps.MAP.get(4));
-IO.println("Values bound to 2 again: " + StableValueAsMaps.MAP.get(2));
-IO.println("The rest is not initialized");
-
-
-// Snippet 7
-// Title: Stable Values as Functions
-record User(String name) {
-    public User {
-        IO.println("Initializing User for name " + name);
-    }
-}
-
-class StableValuesAsFunctions {
-    static Function<String, User> FUNCTION = StableValue.function(
-          Set.of("Mary", "James", "Patricia", "Michael"), User::new);
-}
-
-IO.println("Values bound to Mary: " + StableValuesAsFunctions.FUNCTION.apply("Mary"));
-IO.println("Values bound to James: " + StableValuesAsFunctions.FUNCTION.apply("James"));
-IO.println("The rest is not initialized");
-IO.println("Values bound to Mary again: " + StableValuesAsFunctions.FUNCTION.apply("Mary"));
-IO.println("Values bound to Jennifer again: " + StableValuesAsFunctions.FUNCTION.apply("Jennifer"));
-
-
-// Snippet 8
-// Title: Stable Values as IntFunctions
-class StableValuesAsIntFunctions {
-    static IntFunction<BigInteger> FACTORIAL = StableValue.intFunction(
-          50, number -> {
-              IO.println("Computing factorial of " + number);
-              return factorial(number);
-          });
-
-    static BigInteger factorial(int n) {
-        BigInteger result = BigInteger.ONE;
-        for (int i = 1; i <= n; i++) {
-            result = result.multiply(BigInteger.valueOf(i));
-        }
-        return result;
-    }
-}
-
-IO.println("Factorial of 10 = " + StableValuesAsIntFunctions.FACTORIAL.apply(10));
-IO.println("Factorial of 15 = " + StableValuesAsIntFunctions.FACTORIAL.apply(15));
-IO.println("Factorial of 20 = " + StableValuesAsIntFunctions.FACTORIAL.apply(20));
-IO.println("Factorial of 10 = " + StableValuesAsIntFunctions.FACTORIAL.apply(10));
-IO.println("Factorial of 90 = " + StableValuesAsIntFunctions.FACTORIAL.apply(30));
+​
