@@ -1,5 +1,6 @@
 {
-  "base_url": "https://raw.githubusercontent.com/java/playground-snippets/refs/heads/samples-menu",
+  "base_url": "https://raw.githubusercontent.com/java/playground-snippets/refs/heads/main",
+
   "menu_items": [
     {
       "category": "Hello World",
