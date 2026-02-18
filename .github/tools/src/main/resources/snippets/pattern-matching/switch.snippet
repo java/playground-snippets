@@ -1,0 +1,23 @@
+record Point(int x, int y) {}
+
+record Circle(Point center, int radius) {
+    public Circle {
+        if (radius < 0) throw new IllegalArgumentException("Radius cant be null");
+    }
+}
+
+ToDoubleFunction<Object> surface = object ->
+    switch(object) {
+        case null -> throw new AssertionError("Object is null");
+        case Circle(Point p, int radius) when radius == 0 -> 0d;
+        case Circle(Point p, int radius) -> Math.PI*radius*radius;
+        case Object notACircle -> throw new AssertionError("Object is not a circle");
+    };
+
+Circle c1 = new Circle(new Point(0, 0), 0);
+Circle c2 = new Circle(new Point(1, 1), 1);
+
+System.out.println("Surface of " + c1 + " = " + surface.applyAsDouble(c1));
+System.out.println("Surface of " + c2 + " = " + surface.applyAsDouble(c2));
+surface.applyAsDouble(null);
+surface.applyAsDouble("Not a circle!");
