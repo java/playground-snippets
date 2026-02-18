@@ -68,7 +68,9 @@ var jsonJohn = """
 
 var jsonValue = JsonValue.of(jsonMary);
 var mary = User.of(jsonValue);
+IO.println("Mary is correctly unmarshalled from JSON:");
 IO.println(mary);
 
 jsonValue = JsonValue.of(jsonJohn);
+IO.println("John is not, due to an age that is not an integer:");
 var john = User.of(jsonValue);
