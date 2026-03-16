@@ -1,0 +1,21 @@
+record City(String name, int population) {
+
+    public static City of(String line) {
+        int indexOfLastSpace = line.lastIndexOf(' ');
+        var name = line.substring(0, indexOfLastSpace);
+        var population = Integer.parseInt(line.substring(indexOfLastSpace + 1));
+        return new City(name, population);
+    }
+}
+
+String cities = """
+    New York 8343
+    London 8982
+    Paris 2161
+    Bangaluru 8474
+    Singapore 5454
+    Tokyo 13960
+    """;
+
+var cityList = cities.lines().map(City::of).toList();
+cityList.forEach(System.out::println);

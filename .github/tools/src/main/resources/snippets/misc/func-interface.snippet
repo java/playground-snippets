@@ -1,0 +1,9 @@
+@FunctionalInterface
+interface MyFunctionalInterface {
+    public int incrementByTwo(int a);
+}
+
+MyFunctionalInterface f = (num) -> num + 2;
+var result = f.incrementByTwo(40);
+
+System.out.println(result);

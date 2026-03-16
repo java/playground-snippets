@@ -1,0 +1,21 @@
+enum Day { SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY; }
+var numberOfChar = 0;
+
+switch(Day.MONDAY) {
+    case MONDAY: case FRIDAY: case SUNDAY:
+        numberOfChar = 6;
+        break;
+    case TUESDAY:
+        numberOfChar = 7;
+        break;
+    case WEDNESDAY:
+        numberOfChar = 9;
+        break;
+    case THURSDAY: case SATURDAY:
+        numberOfChar = 8;
+        break;
+    default:
+        throw new IllegalArgumentException();
+}
+
+System.out.println(numberOfChar);

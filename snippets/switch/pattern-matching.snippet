@@ -1,0 +1,6 @@
+var result = switch ("Lorem Ipsum") {
+        case null         -> "Oops";
+        case "Foo", "Bar" -> "Great";
+        default           -> "Ok!";
+};
+System.out.println(result);
