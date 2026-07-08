@@ -152,78 +152,82 @@
     {
       "category": "Primitive Type Pattern",
       "badge": {
-        "text": "Java 26",
+        "text": "Java 27",
         "type": "java-version"
       },
       "subcategories": [
         {
           "category": "… for instanceOf",
-          "source_uri": "java26/PrimitiveTypePatterns_1"
+          "source_uri": "java27/PrimitiveTypePatterns_1"
         },
         {
           "category": "… for switch",
-          "source_uri": "java26/PrimitiveTypePatterns_2"
+          "source_uri": "java27/PrimitiveTypePatterns_2"
         },
         {
           "category": "Narrowing Integer Number Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_3"
+          "source_uri": "java27/PrimitiveTypePatterns_3"
         },
         {
           "category": "Narrowing Floating Point Number Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_4"
+          "source_uri": "java27/PrimitiveTypePatterns_4"
         },
         {
           "category": "Integer Number to Floating Point Number Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_5"
+          "source_uri": "java27/PrimitiveTypePatterns_5"
         },
         {
           "category": "Floating Point Number to Integer Number Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_6"
+          "source_uri": "java27/PrimitiveTypePatterns_6"
         },
         {
           "category": "Double Number to Integer Number Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_7"
+          "source_uri": "java27/PrimitiveTypePatterns_7"
         },
         {
           "category": "Boolean Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_8"
+          "source_uri": "java27/PrimitiveTypePatterns_8"
         },
         {
           "category": "Double Primitive Pattern",
-          "source_uri": "java26/PrimitiveTypePatterns_9"
+          "source_uri": "java27/PrimitiveTypePatterns_9"
         },
         {
           "category": "JSON Analysis",
-          "source_uri": "java26/PrimitiveTypePatterns_10"
+          "source_uri": "java27/PrimitiveTypePatterns_10"
         }
       ]
     },
     {
       "category": "Lazy Constant",
       "badge": {
-        "text": "Java 26",
+        "text": "Java 27",
         "type": "java-version"
       },
       "subcategories": [
         {
           "category": "Static Initializers",
-          "source_uri": "java26/LazyConstants_1"
+          "source_uri": "java27/LazyConstants_1"
         },
         {
           "category": "Enum Initializers",
-          "source_uri": "java26/LazyConstants_2"
+          "source_uri": "java27/LazyConstants_2"
         },
         {
           "category": "… with Suppliers",
-          "source_uri": "java26/LazyConstants_3"
+          "source_uri": "java27/LazyConstants_3"
         },
         {
           "category": "… as Lists",
-          "source_uri": "java26/LazyConstants_4"
+          "source_uri": "java27/LazyConstants_4"
+        },
+        {
+          "category": "… as Sets",
+          "source_uri": "java27/LazyConstants_5"
         },
         {
           "category": "… as Maps",
-          "source_uri": "java26/LazyConstants_5"
+          "source_uri": "java27/LazyConstants_6"
         }
       ]
     },
