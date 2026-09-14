@@ -18,4 +18,4 @@ static <T, R> Gatherer<T, ?, T> customEqual(Function<? super T, ? extends R> equ
 
 var stream = Stream.of("one", "One", "ONE", "Two", "two", "tWo");
 var result = stream.gather(customEqual(String::toLowerCase)).toList();
-System.out.println("result = " + result);
+IO.println("result = " + result);

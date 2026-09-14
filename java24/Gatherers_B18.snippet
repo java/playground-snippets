@@ -25,4 +25,4 @@ return Gatherer.of(
 
 var stream = Stream.of("one", "One", "ONE", "Two", "two", "tWo", "Three", "three");
 var result = stream.gather(customEqualCollecting(String::toLowerCase, Collectors.toList())).toList();
-System.out.println("result = " + result);
+IO.println("result = " + result);

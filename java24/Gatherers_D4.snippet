@@ -22,4 +22,4 @@ var strings = List.of("one", "two", "three");
 var ints = List.of(1, 2, 3, 4, 5);
 
 var result = ints.stream().gather(zip(strings, (i, s) -> i + " -> " + s, "NO_VALUE")).toList();
-System.out.println("result = " + result);
+IO.println("result = " + result);

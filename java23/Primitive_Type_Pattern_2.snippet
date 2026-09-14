@@ -8,10 +8,10 @@ record JsonInt(int i) implements JsonNumber {}
 
 void analyze(JsonNumber jsonNumber) {
     switch(jsonNumber) {
-        case JsonDouble(double d) -> System.out.println("Double: " + d);
-        case JsonFloat(float f) -> System.out.println("Float: " + f);
-        case JsonLong(long l) -> System.out.println("Long: " + l);
-        case JsonInt(int i) -> System.out.println("Int: " + i);
+        case JsonDouble(double d) -> IO.println("Double: " + d);
+        case JsonFloat(float f) -> IO.println("Float: " + f);
+        case JsonLong(long l) -> IO.println("Long: " + l);
+        case JsonInt(int i) -> IO.println("Int: " + i);
     }
 }
 

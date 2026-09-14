@@ -6,13 +6,13 @@ record JsonInt(int i) {}
 
 void analyze(Object o) {
     if (o instanceof JsonDouble(double d)) {
-        System.out.println("o is wrapping a double " + d);
+        IO.println("o is wrapping a double " + d);
     } else if (o instanceof JsonLong(long l)) {
-        System.out.println("o is wrapping a long " + l);
+        IO.println("o is wrapping a long " + l);
     } else if (o instanceof JsonInt(int i)) {
-        System.out.println("o is wrapping an int " + i);
+        IO.println("o is wrapping an int " + i);
     } else {
-        System.out.println("Unrecognized wrapper " + o);
+        IO.println("Unrecognized wrapper " + o);
     }
 }
 

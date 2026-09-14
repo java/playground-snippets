@@ -27,4 +27,4 @@ var result = csv.lines()
         .map(Stream::toList)
         .map(list -> RENTALS."\{list.get(0)} \{list.get(1)} \{list.get(2)}")
         .toList();
-result.forEach(System.out::println);
+result.forEach(IO::println);
