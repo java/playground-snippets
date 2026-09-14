@@ -6,5 +6,5 @@ Function<String, Integer> length = s -> s.length();
 Function<String, Integer> handleNullThenLength = handleNull.andThen(length);
 
 for (String string : strings) {
-    System.out.println(string + " -> length = " + handleNullThenLength.apply(string));
+    IO.println(string + " -> length = " + handleNullThenLength.apply(string));
 }

@@ -22,4 +22,4 @@ static <T extends Comparable<? super T>> Gatherer<T, ?, T> sortDistinct() {
 
 var stream = Stream.of(3, 2, 4, 5, 3, 1, 2, 5, 4);
 var result = stream.gather(sortDistinct()).toList();
-System.out.println("result = " + result);
+IO.println("result = " + result);

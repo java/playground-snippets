@@ -6,4 +6,4 @@ var result = strings.stream()
         .gather(createSlidingWindows)
         .map(windows -> windows.stream().mapToInt(i -> i).sum())
         .toList();
-System.out.println("result = " + result);
+IO.println("result = " + result);

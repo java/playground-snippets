@@ -20,7 +20,7 @@ public static String format(Rental rental) {
 }
 String format = "MMMM dd yyyy";
 LocalDate today = LocalDate.now();
-System.out.println(DateTimeFormatter.ofPattern("MMMM dd yyyy").format(today));
+IO.println(DateTimeFormatter.ofPattern("MMMM dd yyyy").format(today));
 var rentals = List.of(
         new Rental("2024-03-19", "2024-03-22", 800),
         new Rental("2024-07-01", "2024-07-31", 4_000),
@@ -28,4 +28,4 @@ var rentals = List.of(
 );
 rentals.stream()
         .map(rental -> format(rental))
-        .forEach(System.out::println);
+        .forEach(IO::println);
